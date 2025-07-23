@@ -22,7 +22,7 @@ const handler = startServerAndCreateNextHandler<NextRequest, Context>(server, {
     const { cache } = server;
 
     return {
-      headers: req.headers,
+      req,
       dataSources: {
         collectionLogAPI: new CollectionLogAPI({ cache }),
         playerAPI: new PlayerAPI({ cache }),
@@ -31,4 +31,10 @@ const handler = startServerAndCreateNextHandler<NextRequest, Context>(server, {
   },
 });
 
-export { handler as GET, handler as POST };
+export async function GET(request: NextRequest) {
+  return handler(request);
+}
+
+export async function POST(request: NextRequest) {
+  return handler(request);
+}
