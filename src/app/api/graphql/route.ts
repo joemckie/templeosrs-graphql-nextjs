@@ -21,6 +21,7 @@ const schema = await buildSchema({
 
 const server = new ApolloServer<Context>({
   schema,
+  introspection: true,
   plugins: [
     process.env.SHOW_GRAPHQL_PLAYGROUND === 'true' ||
     process.env.NODE_ENV !== 'production'
